@@ -17,6 +17,7 @@
     <modules>
         <module>japaneserest</module>
         <module>japanesecore</module>
+        <module>japanese-api</module>
     </modules>
 
 </project>

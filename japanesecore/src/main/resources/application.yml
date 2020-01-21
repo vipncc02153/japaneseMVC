@@ -1,3 +1,21 @@
 server:
   port: 8080
   servlet.contextPath: /jpa
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://139.199.230.157:3306/core?characterEncoding=utf-8&encrypted=0
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.example.entity
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper : debug

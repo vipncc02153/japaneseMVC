@@ -1,13 +1,17 @@
-package per.hpy.japanesecore.word;
+package per.hpy.word;
 
 
 import org.elasticsearch.common.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import per.hpy.japaneseapi.word.WordService;
-import per.hpy.japaneserest.word.CreateWordCommand;
+import per.hpy.utils.ConvertHelper;
 
 @Component
 public class WordServiceImpl implements WordService {
+
+    @Autowired
+    WordMapper wordMapper;
+
     @Override
     public String createWord(CreateWordCommand cmd) {
         if(StringUtils.isNotBlank(cmd.getWord())){
@@ -15,6 +19,10 @@ public class WordServiceImpl implements WordService {
         }else{
             return "error";
         }
+    }
 
+    @Override
+    public KanjiDTO getKanjiById(GetKanjiByIdCommand cmd) {
+        return ConvertHelper.convert(wordMapper.getKanjiById(cmd.getId()), KanjiDTO.class);
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.hpy.word.WordMapper">
+    <resultMap id="KanjiResultMap" type="per.hpy.word.Kanji">
+        <result column="id" jdbcType="BIGINT" property="" />
+        <result column="kanji" jdbcType="VARCHAR" property="kanji" />
+        <result column="romaji" jdbcType="VARCHAR" property="romaji" />
+        <result column="translation" jdbcType="VARCHAR" property="translation" />
+        <result column="katakana" jdbcType="VARCHAR" property="katakana" />
+        <result column="createTime" jdbcType="DATETIME" property="createTime" />
+        <result column="creatorUid" jdbcType="BIGINT" property="creatorUid" />
+        <result column="operatorTime" jdbcType="DATETIME" property="operatorTime" />
+        <result column="operatorUid" jdbcType="BIGINT" property="operatorUid" />
+    </resultMap>
+
+    <select id="getKanjiById" resultType="per.hpy.word.Kanji">
+        select * from jpa_kanjis where id = #{id}
+    </select>
+
+</mapper>

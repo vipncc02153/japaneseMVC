@@ -1,6 +1,7 @@
-package per.hpy.japaneserest.word;
+package per.hpy.word;
 
 import com.google.gson.Gson;
+import per.hpy.utils.StringHelper;
 
 public class CreateWordCommand {
 
@@ -16,6 +17,6 @@ public class CreateWordCommand {
 
     @Override
     public String toString() {
-        return new Gson().toJson(this);
+        return StringHelper.toJsonString(this);
     }
 }

@@ -1,12 +1,10 @@
-package per.hpy.japanesecore.word;
+package per.hpy.word;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import per.hpy.japaneseapi.word.WordService;
-import per.hpy.japaneserest.word.CreateWordCommand;
 import per.hpy.rest.ErrorCodes;
 import per.hpy.rest.RestResponse;
 
@@ -14,8 +12,8 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/word")
-public class wordController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(wordController.class);
+public class WordController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WordController.class);
 
     @Autowired
     WordService wordService;
@@ -29,6 +27,19 @@ public class wordController {
     public RestResponse createWord(@Valid CreateWordCommand cmd) {
         String word = wordService.createWord(cmd);
         RestResponse response = new RestResponse(word);
+        response.setErrorCode(ErrorCodes.SUCCESS);
+        response.setErrorDescription("OK");
+        return response;
+    }
+
+    /**
+     * <b>URL: /word/getKanjiById</b>
+     * <p>创建新单词</p>
+     */
+    @RequestMapping("getKanjiById")
+    public RestResponse getKanjiById(@Valid GetKanjiByIdCommand cmd) {
+        KanjiDTO kanji = wordService.getKanjiById(cmd);
+        RestResponse response = new RestResponse(kanji);
         response.setErrorCode(ErrorCodes.SUCCESS);
         response.setErrorDescription("OK");
         return response;
